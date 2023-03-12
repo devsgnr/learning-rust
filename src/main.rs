@@ -52,6 +52,21 @@ fn main() {
     for i in &mut vec {
         println!("{}", *i * 2);
     }
+
+    #[derive(Debug)]
+    enum Spreadsheet {
+        Int(i32),
+        Float(f64),
+        Text(String),
+    }
+
+    let list = vec![
+        Spreadsheet::Int(3),
+        Spreadsheet::Float(0.5),
+        Spreadsheet::Text(String::from("Hi")),
+    ];
+
+    println!("{:?}", list);
 }
 
 /*
