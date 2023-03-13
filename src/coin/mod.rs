@@ -1,6 +1,7 @@
 pub mod coin {
     use crate::message::message::Message;
 
+    #[allow(dead_code)]
     pub enum Coin {
         Penny,
         Nickel,

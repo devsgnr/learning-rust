@@ -1,10 +1,16 @@
-pub mod coin;
-pub mod message;
-pub mod shape;
-
-use std::collections::HashMap;
+mod coin;
+mod collections;
+mod error_handling;
+mod generics;
+mod message;
+mod shape;
 
 use coin::coin::{check_coin_option, check_if_coin, value_in_cents, Coin};
+use collections::maps::mine_maps::run_maps;
+use collections::strings::mine_strings::run_string;
+use collections::vectors::mine_vectors::run_vectors;
+use error_handling::errorhandling::{open_a_file, run_file_error_handling};
+use generics::generic_functions::run_largest;
 use message::message::Message;
 use shape::shape::Rectangle;
 
@@ -34,81 +40,18 @@ fn main() {
         None => println!("No such coin"),
     }
 
-    /* Vectors */
-    let mut vec: Vec<i32> = Vec::new();
-    vec.push(1);
-    vec.push(2);
-    vec.push(6);
-
-    println!("{:?}", vec);
-
-    let third = &vec[2];
-    println!("Using indexing third element is: {}", third);
-
-    let third_ = vec.get(10);
-    match third_ {
-        Some(value) => println!("Using get we found third element: {}", value),
-        None => println!("We did not find anything"),
-    };
-
-    for i in &mut vec {
-        println!("{}", *i * 2);
+    let file_openin = open_a_file("hello_world.txt");
+    match file_openin {
+        Ok(result) => println!("{:?}", result),
+        Err(error) => println!("Error: {:?}", error),
     }
 
-    #[derive(Debug)]
-    enum Spreadsheet {
-        Int(i32),
-        Float(f64),
-        Text(String),
-    }
+    run_vectors();
+    run_string();
+    run_maps();
+    run_file_error_handling();
 
-    let list = vec![
-        Spreadsheet::Int(3),
-        Spreadsheet::Float(0.5),
-        Spreadsheet::Text(String::from("Hi")),
-    ];
-
-    println!("{:?}", list);
-
-    /*
-     String as a collection
-    */
-    let mut s = String::from("Emmanuel");
-    s.push_str(" Watila");
-    println!("{}", s);
-
-    let s1 = String::from("Tic");
-    let s2 = String::from("Tac");
-    let s3 = String::from("Toe");
-    let s_concat = format!("{s1}-{s2}-{s3}");
-
-    println!("{}", s_concat);
-
-    let s_literal = "Emmanuel";
-    let s_bytes = &s_literal.as_bytes();
-    for (i, &item) in s_bytes.iter().enumerate() {
-        println!("{}: {}", i, item);
-    }
-    for (i, character) in s_literal.chars().enumerate() {
-        println!("{}: {}", i, character)
-    }
-    println!("{:?}", s_bytes);
-
-    /*
-     Collections -> HashMap
-    */
-    let mut map: HashMap<&str, u32> = HashMap::new();
-
-    map.insert("Blue", 10);
-    map.insert("Yellow", 20);
-
-    map.entry("Green").or_insert(25);
-
-    println!("{:?}", map);
-
-    for (key, value) in map {
-        println!("{}: {}", key, value);
-    }
+    run_largest();
 }
 
 /*
