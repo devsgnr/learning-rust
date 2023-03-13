@@ -4,6 +4,7 @@ pub mod errorhandling {
         io::{self, ErrorKind, Read},
     };
 
+    #[allow(dead_code)] //prevent warning: rust server
     pub fn run_file_error_handling() {
         /*
            Error Handling using Match

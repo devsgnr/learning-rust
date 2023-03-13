@@ -9,7 +9,7 @@ use coin::coin::{check_coin_option, check_if_coin, value_in_cents, Coin};
 use collections::maps::mine_maps::run_maps;
 use collections::strings::mine_strings::run_string;
 use collections::vectors::mine_vectors::run_vectors;
-use error_handling::errorhandling::{open_a_file, run_file_error_handling};
+use error_handling::errorhandling::open_a_file;
 use generics::generic_functions::run_largest;
 use message::message::Message;
 use shape::shape::Rectangle;
@@ -49,7 +49,6 @@ fn main() {
     run_vectors();
     run_string();
     run_maps();
-    run_file_error_handling();
 
     run_largest();
 }
