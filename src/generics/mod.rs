@@ -1,3 +1,4 @@
+pub mod struct_and_traits;
 pub mod generic_functions {
     pub fn largest(list: &[u8]) -> &u8 {
         let mut largest = &list[0];
